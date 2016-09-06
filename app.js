@@ -73,10 +73,10 @@ var startHTML = "";
 startHTML += "<!DOCTYPE html>";
 startHTML += "<html>";
 startHTML += "<body>";
-startHTML += "";
-startHTML += "<form action=\"\/validate\" method=\"post\">";
+startHTML += '<h4>Google Form Extraction Tool Created by Boon Jin <a href="http://www.boonjin.com">(www.boonjin.com)</a></h4>';
+startHTML += "<form action=\"\/\" method=\"post\">";
 startHTML += "  <br>";
-startHTML += "  Google Form URL:<br>";
+startHTML += "  Google Form (or Google Site with embedded Form) URL:<br>";
 startHTML += "  <input type=\"text\" name=\"formaddress\" value=\"";
 
 var midHTML = "\" size=\"100\">";
@@ -94,7 +94,7 @@ var frameStart = "<br><br><br><iframe src=\"";
 var frameEnd = "\" width='500px' height='500px' ></iframe>";
 
 
-app.post('/validate', function(req, res) {
+app.post('/', function(req, res) {
 
   //  console.log("TEST");
   //modify the url in any way you want
