@@ -107,7 +107,7 @@ app.all('/', function(req, res) {
     newUrl = req.query.formaddress;
   }
   if (!newUrl){
-    res.status(200).send(startHTML + newUrl + midHTML + '<h2> </h2>' + endHTML);
+    res.status(200).send(startHTML + midHTML + '<h2> </h2>' + endHTML);
     return;
   }
 
