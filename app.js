@@ -56,18 +56,18 @@ app.use(bodyParser.urlencoded({
 //app.use(express.json());
 app.use(require('method-override')());
 
-app.get(function(req, res, next) {
-  if (req.url.substr(-1) == '/' && req.url.length > 1)
-    res.redirect(301, req.url.slice(0, -1));
-  else
-    next();
-});
+// app.get(function(req, res, next) {
+//   if (req.url.substr(-1) == '/' && req.url.length > 1)
+//     res.redirect(301, req.url.slice(0, -1));
+//   else
+//     next();
+// });
 
 
-var serveStatic = require('serve-static');
-app.use(serveStatic(path.join(__dirname, 'statics'), {
-  setHeaders: function(res) {}
-}));
+// var serveStatic = require('serve-static');
+// app.use(serveStatic(path.join(__dirname, 'statics'), {
+//   setHeaders: function(res) {}
+// }));
 
 var startHTML = "";
 startHTML += "<!DOCTYPE html>";
@@ -95,13 +95,22 @@ var frameStart = "<br><br><br><iframe src=\"";
 var frameEnd = "\" width='500px' height='500px' ></iframe>";
 
 
-app.post('/', function(req, res) {
+app.all('/', function(req, res) {
 
   //  console.log("TEST");
   //modify the url in any way you want
   //    console.log("HJSELJRLEJSRLER");
   var newUrl = req.body.formaddress;
-  console.log(newUrl);
+
+  console.log(req.body);
+  if (!newUrl){
+    newUrl = req.query.formaddress;
+  }
+  if (!newUrl){
+    res.status(200).send(startHTML + newUrl + midHTML + '<h2> </h2>' + endHTML);
+    return;
+  }
+
   if (newUrl.indexOf('google.com') < 0) {
     res.status(200).send(startHTML + newUrl + midHTML + '<h2> NOT FOUND! </h2>' + endHTML);
     return;
