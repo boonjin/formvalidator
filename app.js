@@ -160,7 +160,7 @@ function checkURL(newUrl, res) {
       var $ = cheerio.load(body);
 
 
-      var scriptData = $('script').last().html();
+      var scriptData = $('script[type="text/javascript"]').last().html();
       // console.log(scriptData);
 
 
