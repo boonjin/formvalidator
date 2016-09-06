@@ -74,6 +74,7 @@ startHTML += "<!DOCTYPE html>";
 startHTML += "<html>";
 startHTML += "<body>";
 startHTML += '<h4>Google Form Extraction Tool Created by Boon Jin <a href="http://www.boonjin.com">(www.boonjin.com)</a></h4>';
+startHTML += '<h4>Bugs? Email me at jingoh@gmail.com</h4>';
 startHTML += "<form action=\"\/\" method=\"post\">";
 startHTML += "  <br>";
 startHTML += "  Google Form (or Google Site with embedded Form) URL:<br>";
