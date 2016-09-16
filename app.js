@@ -156,12 +156,13 @@ app.all('/', function(req, res) {
 function checkURL(newUrl, res) {
   console.log(newUrl);
   request(newUrl, function(error, response, body) {
+    // console.log(body);
     if (!error && response.statusCode == 200) {
       var $ = cheerio.load(body);
 
 
       var scriptData = $('script[type="text/javascript"]').last().html();
-      // console.log(scriptData);
+      console.log(scriptData);
 
 
       // var position = 0;
@@ -178,6 +179,21 @@ function checkURL(newUrl, res) {
         startPosition = scriptData.indexOf(marker, endPosition + 1);
       }
 
+      if (output === ""){
+        var marker = '"';
+        var markerEnd = '"';
+        var endPosition;
+
+        var output = "";
+
+        var startPosition = scriptData.indexOf(marker, 0);
+        while (startPosition > 0) {
+          var endPosition = scriptData.indexOf(markerEnd, startPosition + 1);
+          var dataFound = scriptData.substring(startPosition + marker.length, endPosition);
+          output += "<h3>" + dataFound + "</h3>";
+          startPosition = scriptData.indexOf(marker, endPosition + 1);
+        }
+      }
 
       res.status(200).send(startHTML + newUrl + midHTML + output + frameStart + newUrl + frameEnd + endHTML);
     } else {
